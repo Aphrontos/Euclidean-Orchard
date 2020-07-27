@@ -5,13 +5,22 @@ from math import gcd
 
 # Generate the data
 
-def generateData(data):
-    for j in range(1080):
-        for i in range(1920):
+def generateData(data, height = None, width = None):
+	if height is None:
+        height = len(data) # rows
+    if width is None:
+        width = 0
+        for row in data:
+            if width < len(row):
+                width = len(row)
+				
+    for j in range(height):
+        for i in range(width):
             if gcd(j, i) == 1:
-                data[j, i] = 255
-                # 2014 Guido Draheim
-# https://stackoverflow.com/a/25835368
+                data[j, i] = 0
+
+# Draheim, G. U. (2014, September 14). Creating a PNG file in Python. 
+#	Retrieved July 27, 2020, from https://stackoverflow.com/a/25835368
 # Generate the PNG
 
 def generatePNG(data, height = None, width = None):
@@ -34,7 +43,7 @@ def generatePNG(data, height = None, width = None):
     png = b"\x89" + "PNG\r\n\x1A\n".encode('ascii')
     if makeIHDR:
         colortype = 0 # true gray image (no palette)
-        bitdepth = 8 # with one byte per pixel (0..255)
+        bitdepth = 8 # with one byte per pixel (0 to 255)
         compression = 0 # zlib (no choice here)
         filtertype = 0 # adaptive (each scanline seperately)
         
@@ -62,12 +71,11 @@ def generatePNG(data, height = None, width = None):
         block = "IEND".encode('ascii')
         png += I4(0) + block + I4(zlib.crc32(block))
     open("Pattern.png","wb").write(png)
-    return png
     
 height = input("height: ")
 width = input("width: ")
 
-data = numpy.zeros((height, width), dtype = int)
+data = numpy.full((height, width), 255, dtype = int)
 
-generateData(data)
+generateData(data, height, width)
 generatePNG(data, height, width)
