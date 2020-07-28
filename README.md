@@ -20,9 +20,9 @@ y ≔ b
 1 ≡ b mod a is equivalent to GCD(a, b) = 1, which is the definition of coprimality.
 
 ## Usage
-This program generates a PNG based on Dirichlet's Theorem on Arithmetic Progression.
+This program generates a PNG based on Dirichlet's Theorem on Arithmetic Progression using Python's zlib.
 
-The code uses Python's zlib, and is ridiculously slow. Use if you have the patience.
+Note: This ridiculously slow. Use if you have the patience.
 
 A PNG named "Pattern.png" will be generated in the same directory where you put the Python code.
 
