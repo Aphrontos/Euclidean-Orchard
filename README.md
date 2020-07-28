@@ -17,6 +17,8 @@ y ≔ b
 
 (x + y) mod x = y mod x
 
+1 ≡ b mod a is equivalent to GCD(a, b) = 1, which is the definition of coprimality.
+
 ## Usage
 This program generates a PNG based on Dirichlet's Theorem on Arithmetic Progression.
 
