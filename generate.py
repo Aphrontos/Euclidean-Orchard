@@ -6,13 +6,10 @@ from math import gcd
 # Generate the data
 
 def generateData(data, height = None, width = None):
-	if height is None:
-        height = len(data) # rows
+    if height is None:
+        height = data.shape[0] # number of rows
     if width is None:
-        width = 0
-        for row in data:
-            if width < len(row):
-                width = len(row)
+        width = data.shape[1] # number of columns
 				
     for j in range(height):
         for i in range(width):
@@ -28,14 +25,11 @@ def generatePNG(data, name, height = None, width = None):
         return struct.pack("!B", value & (2**8-1))
     def I4(value):
         return struct.pack("!I", value & (2**32-1))
-    # compute width&height from data if not explicit
+    # compute width & height from data if not explicit
     if height is None:
-        height = len(data) # rows
+        height = data.shape[0] # number of rows
     if width is None:
-        width = 0
-        for row in data:
-            if width < len(row):
-                width = len(row)
+        width = data.shape[1] # number of columns
     # generate these chunks depending on image type
     makeIHDR = True
     makeIDAT = True
