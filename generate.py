@@ -23,7 +23,7 @@ def generateData(data, height = None, width = None):
 #	Retrieved July 27, 2020, from https://stackoverflow.com/a/25835368
 # Generate the PNG
 
-def generatePNG(data, height = None, width = None):
+def generatePNG(data, name, height = None, width = None):
     def I1(value):
         return struct.pack("!B", value & (2**8-1))
     def I4(value):
@@ -70,12 +70,13 @@ def generatePNG(data, height = None, width = None):
     if makeIEND:
         block = "IEND".encode('ascii')
         png += I4(0) + block + I4(zlib.crc32(block))
-    open("Pattern.png","wb").write(png)
+    open(name + ".png","wb").write(png)
     
 height = input("height: ")
 width = input("width: ")
+name = input("name: ")
 
 data = numpy.full((height, width), 255, dtype = int)
 
 generateData(data, height, width)
-generatePNG(data, height, width)
+generatePNG(data, name, height, width)
