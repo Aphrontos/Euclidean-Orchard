@@ -1,7 +1,7 @@
 # A Representation of Euler's Sieve
 
 ## Description
-Euler's sieve is an algorithm that is almost identical to Aristhosthenes' Sieve. THe only difference is that Euler's sieve does not mark a number again.
+Euler's sieve is an algorithm that marks composite numbers only once.
 
 ## Motivation
 I just felt curious what will happen and how it would look like. 
