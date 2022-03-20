@@ -62,9 +62,17 @@ def generate_png(data):
         w.write(f, img)
     
 if __name__ == "__main__":
-    height = 100 # make sure this is small
-    primes = get_primes(height+1)
+    height = 100
+    
+    primes = generate_primes(height+1)
+    print("Generated the primes")
+    
     width = primes[height] ** 2
     
     data = generate_data(primes, height, width)
+    print("Generated the data")
+    
+    # This takes a long time because of the width needed
+    # to show the trend
     generate_png(data)
+    print("Generated the PNG")
