@@ -1,7 +1,7 @@
-# Coprimes
+# A Representation of Euler's Sieve
 
 ## Description
-Euclid's orchard is an infinite 2D structure, where the 'trees' are on lattice points whose coordinates are coprime.
+Euler's sieve is an algorithm that is almost identical to Aristhosthenes' Sieve. THe only difference is that Euler's sieve does not mark a number again.
 
 ## Motivation
 I just felt curious what will happen and how it would look like. 
