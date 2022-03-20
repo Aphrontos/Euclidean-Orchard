@@ -2,14 +2,14 @@
 """
 Created on Sat Mar 19 23:48:35 2022
 
-@author: Adíaphoros
+@author: USER
 """
 
-import png
+import png #pip install pypng
 import numpy
-from primesieve import nth_prime
+from primesieve import nth_prime #pip install primesieve
 
-def get_primes(size):
+def generate_primes(size):
     primes = numpy.full(size, 0, dtype = int)
     for i in range(size):
         primes[i] = nth_prime(i+1)
@@ -20,16 +20,16 @@ def get_primes(size):
 
 def generate_data(primes, height = None, width = None):
     data = numpy.full((height, width), 0, dtype = int)
-    isMarked = numpy.full(width, False, dtype = bool)
+    marked = numpy.full(width, False, dtype = bool)
         
     for j in range(height):
         p = primes[j]
         for i in range(width):
-            if   i % p != 0 or  isMarked[i]:
+            if   i % p != 0 or  marked[i]:
                 data[j, i] = 0
             elif i % p == 0 and i > p:
                 data[j, i] = 1
-                isMarked[i] = True
+                marked[i] = True
                 
     for j in range(height):
         data[j, primes[j]] = 2
@@ -45,18 +45,16 @@ def generate_png(data):
     width  = data.shape[1] # number of columns
     
     img = []
+    palette = [(0x18, 0x46, 0x46),
+               (0x47, 0xEF, 0x91),
+               (0xFF, 0x00, 0x00)]
+    
     for y in range(height):
         row = ()
-        color = ()
         for x in range(width):
-            if   data[y, x] == 0:
-                color = (0x18, 0x46, 0x46)
-            elif data[y, x] == 1:
-                color = (0x47, 0xEF, 0x91)
-            elif data[y, x] == 2:
-                color = (0xFF, 0x00, 0x00)
-            row = row + color
+            row += palette[data[y, x]]
         img.append(row)
+    
     with open('sieve.png', 'wb') as f:
         w = png.Writer(width, height, greyscale=False)
         w.write(f, img)
