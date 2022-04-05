@@ -58,8 +58,8 @@ def generate_png(data):
     with open('sieve.png', 'wb') as f:
         w = png.Writer(width, height, greyscale=False)
         w.write(f, img)
-    
-if __name__ == "__main__":
+        
+def main():
     height = 100
     
     primes = generate_primes(height+1)
@@ -74,3 +74,6 @@ if __name__ == "__main__":
     # to show the trend
     generate_png(data)
     print("Generated the PNG")
+    
+if __name__ == "__main__":
+    main()
